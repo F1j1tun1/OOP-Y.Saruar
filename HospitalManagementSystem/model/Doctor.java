@@ -24,6 +24,7 @@ public class Doctor extends Person implements Treating {
         }
         this.experienceYears = experienceYears;
     }
+
     public boolean isExperienced() {
         return experienceYears >= 10;
     }
