@@ -12,6 +12,13 @@ public class Doctor extends Person implements Treating {
         setExperienceYears(experienceYears);
     }
 
+    public String getSpecialization() {
+        return specialization;
+    }
+    public int getExperienceYears() {
+        return experienceYears;
+    }
+
     public void setSpecialization(String specialization) {
         if (specialization == null || specialization.trim().isEmpty()) {
             throw new InvalidInputException("Specialization cannot be empty");

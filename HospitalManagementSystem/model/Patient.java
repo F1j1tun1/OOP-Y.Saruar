@@ -5,9 +5,13 @@ import exception.InvalidInputException;
 public class Patient extends Person implements Treating{
     private String illness;
 
-    public Patient(int id, String name, int age, String department, String illness, boolean checked) {
+    public Patient(int id, String name, int age, String department, String illness) {
         super(id, name, age, department);
         setIllness(illness);
+    }
+
+    public String getIllness() {
+        return illness;
     }
 
     public void setIllness(String illness) {

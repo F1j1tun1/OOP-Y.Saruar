@@ -9,15 +9,11 @@ public abstract class Person {
     protected String department;
 
     public Person(int id, String name, int age, String department) {
-        setId(id);
         setName(name);
         setAge(age);
         setDepartment(department);
     }
 
-    public int getId() {
-        return id;
-    }
     public String getName() {
         return name;
     }
@@ -28,12 +24,6 @@ public abstract class Person {
         return department;
     }
 
-    public void setId(int id) {
-        if (id <= 0) {
-            throw new InvalidInputException("ID must be positive!");
-        }
-        this.id = id;
-    }
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new InvalidInputException("Name cannot be empty!");
@@ -59,8 +49,7 @@ public abstract class Person {
     @Override
     public String toString() {
         return "[" + getRole() + "] " + name +
-                " (ID: " + id +
-                ", Age: " + age +
+                " (Age: " + age +
                 ", Dept: " + department + ")";
     }
 }
