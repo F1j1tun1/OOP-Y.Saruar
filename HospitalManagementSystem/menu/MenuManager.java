@@ -8,7 +8,7 @@ import database.PatientDAO;
 import database.DoctorDAO;
 
 public class MenuManager implements Menu {
-    ArrayList<Patient> people = new ArrayList<>();
+    ArrayList<Person> people = new ArrayList<>();
     private final Scanner scanner = new Scanner(System.in);
     private final PatientDAO patientDAO = new PatientDAO();
     private final DoctorDAO doctorDAO = new DoctorDAO();
