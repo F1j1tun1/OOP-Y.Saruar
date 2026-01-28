@@ -8,11 +8,11 @@ public class TestConnection {
         Connection c = DatabaseConnection.getConnection();
 
         if (c != null) {
-            System.out.println("Connection successful!");
+            System.out.println("\nConnection successful!");
             DatabaseConnection.closeConnection(c);
         }
         else {
-            System.out.println("Connection failed!");
+            System.out.println("\nConnection failed!");
         }
     }
 }

@@ -31,7 +31,7 @@ public class MenuManager implements Menu {
         System.out.println("│12. Treating Demo                       │");
         System.out.println("│ 0. Exit                                │");
         System.out.println("└────────────────────────────────────────┘");
-        System.out.println("Enter your choice:");
+        System.out.println("\nEnter your choice:");
     }
 
     @Override
