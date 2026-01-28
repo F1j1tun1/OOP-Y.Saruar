@@ -13,10 +13,9 @@ public class Patient extends Person implements Treating{
     public String getIllness() {
         return illness;
     }
-
     public void setIllness(String illness) {
         if (illness == null || illness.trim().isEmpty()) {
-            throw new InvalidInputException("Illness cannot be empty");
+            throw new InvalidInputException("Invalid Illness");
         }
         this.illness = illness;
     }
