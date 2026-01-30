@@ -12,15 +12,15 @@ public class PersonDAO {
         if (con == null) return false;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement statement = con.prepareStatement(sql);
 
-            st.setString(1, p.getName());
-            st.setInt(2, p.getAge());
-            st.setString(3, p.getDepartment());
-            st.setString(4, "patient");
-            st.setString(5, p.getIllness());
+            statement.setString(1, p.getName());
+            statement.setInt(2, p.getAge());
+            statement.setString(3, p.getDepartment());
+            statement.setString(4, "patient");
+            statement.setString(5, p.getIllness());
 
-            return st.executeUpdate() > 0;
+            return statement.executeUpdate() > 0;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -37,17 +37,17 @@ public class PersonDAO {
         if (con == null) return false;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement statement = con.prepareStatement(sql);
 
-            st.setString(1, d.getName());
-            st.setInt(2, d.getAge());
-            st.setString(3, d.getDepartment());
-            st.setString(4, "doctor");
-            st.setString(5, d.getSpecialization());
-            st.setInt(6, d.getExperienceYears());
-            st.setDouble(7, d.getSalary());
+            statement.setString(1, d.getName());
+            statement.setInt(2, d.getAge());
+            statement.setString(3, d.getDepartment());
+            statement.setString(4, "doctor");
+            statement.setString(5, d.getSpecialization());
+            statement.setInt(6, d.getExperienceYears());
+            statement.setDouble(7, d.getSalary());
 
-            return st.executeUpdate() > 0;
+            return statement.executeUpdate() > 0;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -66,15 +66,15 @@ public class PersonDAO {
         if (con == null) return list;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+            PreparedStatement statement = con.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
 
-            while (rs.next()) {
-                list.add(extractPerson(rs));
+            while (resultSet.next()) {
+                list.add(extractPerson(resultSet));
             }
 
-            rs.close();
-            st.close();
+            resultSet.close();
+            statement.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -92,21 +92,21 @@ public class PersonDAO {
         if (con == null) return list;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+            PreparedStatement statement = con.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
 
-            while (rs.next()) {
+            while (resultSet.next()) {
                 list.add(new Patient(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getInt("age"),
-                        rs.getString("department"),
-                        rs.getString("illness")
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("department"),
+                        resultSet.getString("illness")
                 ));
             }
 
-            rs.close();
-            st.close();
+            resultSet.close();
+            statement.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -125,23 +125,23 @@ public class PersonDAO {
         if (con == null) return list;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+            PreparedStatement statement = con.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
 
-            while (rs.next()) {
+            while (resultSet.next()) {
                 list.add(new Doctor(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getInt("age"),
-                        rs.getString("department"),
-                        rs.getString("specialization"),
-                        rs.getInt("experience"),
-                        rs.getDouble("salary")
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("department"),
+                        resultSet.getString("specialization"),
+                        resultSet.getInt("experience"),
+                        resultSet.getDouble("salary")
                 ));
             }
 
-            rs.close();
-            st.close();
+            resultSet.close();
+            statement.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -152,27 +152,27 @@ public class PersonDAO {
 
         return list;
     }
-    private Person extractPerson(ResultSet rs) throws SQLException {
-        String type = rs.getString("type");
+    private Person extractPerson(ResultSet resultSet) throws SQLException {
+        String type = resultSet.getString("type");
 
         if (type.equalsIgnoreCase("doctor")) {
             return new Doctor(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getInt("age"),
-                    rs.getString("department"),
-                    rs.getString("specialization"),
-                    rs.getInt("experience"),
-                    rs.getDouble("salary")
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getInt("age"),
+                    resultSet.getString("department"),
+                    resultSet.getString("specialization"),
+                    resultSet.getInt("experience"),
+                    resultSet.getDouble("salary")
             );
         }
         else {
             return new Patient(
-                    rs.getInt("id"),
-                    rs.getString("name"),
-                    rs.getInt("age"),
-                    rs.getString("department"),
-                    rs.getString("illness")
+                    resultSet.getInt("id"),
+                    resultSet.getString("name"),
+                    resultSet.getInt("age"),
+                    resultSet.getString("department"),
+                    resultSet.getString("illness")
             );
         }
     }
@@ -184,15 +184,15 @@ public class PersonDAO {
         if (con == null) return false;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement statement = con.prepareStatement(sql);
 
-            st.setString(1, p.getName());
-            st.setInt(2, p.getAge());
-            st.setString(3, p.getDepartment());
-            st.setString(4, p.getIllness());
-            st.setInt(5, p.getId());
+            statement.setString(1, p.getName());
+            statement.setInt(2, p.getAge());
+            statement.setString(3, p.getDepartment());
+            statement.setString(4, p.getIllness());
+            statement.setInt(5, p.getId());
 
-            return st.executeUpdate() > 0;
+            return statement.executeUpdate() > 0;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -209,17 +209,17 @@ public class PersonDAO {
         if (con == null) return false;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement statement = con.prepareStatement(sql);
 
-            st.setString(1, d.getName());
-            st.setInt(2, d.getAge());
-            st.setString(3, d.getDepartment());
-            st.setString(4, d.getSpecialization());
-            st.setInt(5, d.getExperienceYears());
-            st.setDouble(6, d.getSalary());
-            st.setInt(7, d.getId());
+            statement.setString(1, d.getName());
+            statement.setInt(2, d.getAge());
+            statement.setString(3, d.getDepartment());
+            statement.setString(4, d.getSpecialization());
+            statement.setInt(5, d.getExperienceYears());
+            statement.setDouble(6, d.getSalary());
+            statement.setInt(7, d.getId());
 
-            return st.executeUpdate() > 0;
+            return statement.executeUpdate() > 0;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -237,10 +237,10 @@ public class PersonDAO {
         if (con == null) return false;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, id);
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
 
-            return st.executeUpdate() > 0;
+            return statement.executeUpdate() > 0;
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -257,14 +257,14 @@ public class PersonDAO {
         if (con == null) return null;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
 
-            if (rs.next()) return extractPerson(rs);
+            if (resultSet.next()) return extractPerson(resultSet);
 
-            rs.close();
-            st.close();
+            resultSet.close();
+            statement.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -283,17 +283,17 @@ public class PersonDAO {
         if (con == null) return list;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, "%" + name + "%");
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, "%" + name + "%");
 
-            ResultSet rs = st.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
 
-            while (rs.next()) {
-                list.add(extractPerson(rs));
+            while (resultSet.next()) {
+                list.add(extractPerson(resultSet));
             }
 
-            rs.close();
-            st.close();
+            resultSet.close();
+            statement.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -311,19 +311,19 @@ public class PersonDAO {
         if (con == null) return list;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
+            PreparedStatement statement = con.prepareStatement(sql);
 
-            st.setDouble(1, min);
-            st.setDouble(2, max);
+            statement.setDouble(1, min);
+            statement.setDouble(2, max);
 
-            ResultSet rs = st.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
 
-            while (rs.next()) {
-                list.add(extractPerson(rs));
+            while (resultSet.next()) {
+                list.add(extractPerson(resultSet));
             }
 
-            rs.close();
-            st.close();
+            resultSet.close();
+            statement.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -340,23 +340,23 @@ public class PersonDAO {
         if (con == null) return null;
 
         try {
-            PreparedStatement st = con.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
+            PreparedStatement statement = con.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
 
-            if (rs.next()) {
+            if (resultSet.next()) {
                 return new Doctor(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getInt("age"),
-                        rs.getString("department"),
-                        rs.getString("specialization"),
-                        rs.getInt("experience"),
-                        rs.getDouble("salary")
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("age"),
+                        resultSet.getString("department"),
+                        resultSet.getString("specialization"),
+                        resultSet.getInt("experience"),
+                        resultSet.getDouble("salary")
                 );
             }
 
-            rs.close();
-            st.close();
+            resultSet.close();
+            statement.close();
         }
         catch (SQLException e) {
             e.printStackTrace();

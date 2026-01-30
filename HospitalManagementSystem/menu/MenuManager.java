@@ -219,7 +219,7 @@ public class MenuManager implements Menu {
 
         if (confirm.equalsIgnoreCase("yes")) {
             if (personDAO.deletePerson(id))
-                System.out.println("Deleted.");
+                System.out.println("Deleted Preson: " + p);
             else
                 System.out.println("Delete failed.");
         }
