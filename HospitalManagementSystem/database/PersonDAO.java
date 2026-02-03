@@ -258,8 +258,8 @@ public class PersonDAO {
 
         try {
             PreparedStatement statement = con.prepareStatement(sql);
-            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
+            statement.setInt(1, id);
 
             if (resultSet.next()) return extractPerson(resultSet);
 

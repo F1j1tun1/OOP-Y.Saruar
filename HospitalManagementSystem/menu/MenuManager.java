@@ -187,8 +187,8 @@ public class MenuManager implements Menu {
             System.out.print("Salary: ");
             double sal = scanner.nextDouble();
 
-            Doctor d = new Doctor(id, name, age, dept, spec, exp, sal);
-            personDAO.updateDoctor(d);
+            Doctor doc = new Doctor(id, name, age, dept, spec, exp, sal);
+            personDAO.updateDoctor(doc);
         }
         else {
             System.out.print("Illness: ");
@@ -219,7 +219,7 @@ public class MenuManager implements Menu {
 
         if (confirm.equalsIgnoreCase("yes")) {
             if (personDAO.deletePerson(id))
-                System.out.println("Deleted Preson: " + p);
+                System.out.println("Deleted Person: " + p);
             else
                 System.out.println("Delete failed.");
         }
