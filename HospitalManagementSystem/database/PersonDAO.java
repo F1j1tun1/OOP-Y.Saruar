@@ -31,11 +31,12 @@ public class PersonDAO {
         return false;
     }
     public boolean insertDoctor(Doctor d) {
-        String sql = "INSERT INTO people(name, age, department, type, specialization, experience, salary) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO people(name, age, department, type, specialization, experience, salary) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         Connection con = DatabaseConnection.getConnection();
-        if (con == null) return false;
-
+        if (con == null) {
+            return false;
+        }
         try {
             PreparedStatement statement = con.prepareStatement(sql);
 
@@ -231,11 +232,11 @@ public class PersonDAO {
     }
 
     public boolean deletePerson(int id) {
-        String sql = "DELETE FROM people WHERE id=?";
-
+        String sql = "DELETE FROM people WHERE id = ?";
         Connection con = DatabaseConnection.getConnection();
-        if (con == null) return false;
-
+        if (con == null) {
+            return false;
+        }
         try {
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setInt(1, id);
@@ -249,6 +250,8 @@ public class PersonDAO {
             DatabaseConnection.closeConnection(con);
         }
         return false;
+
+
     }
     public Person getPersonById(int id) {
         String sql = "SELECT * FROM people WHERE id=?";
